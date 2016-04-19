@@ -3,6 +3,19 @@
 - **[简介](#简介)**
 - **[功能描述](#功能描述)**
 - **[安装部署](#安装部署)**
+  - **[安装以下软件](#安装以下软件)**
+  - **[关闭selinux并开放iptables的80端口](#关闭selinux并开放iptables的80端口)**
+  - **[pip安装如下包](#pip安装如下包)**
+  - **[创建uwsgi.ini](#创建uwsgi.ini)**
+  - **[创建supervisor配置文件](#创建supervisor配置文件)**
+  - **[编辑supervisor配置文件](#编辑supervisor配置文件)**
+  - **[修改nginx配置](#修改nginx配置)**
+  - **[添加网站监控脚本到定时任务](#添加网站监控脚本到定时任务)**
+  - **[在需要做安全审计的主机的/etc/profile文件中添加如下配置](#在需要做安全审计的主机的/etc/profile文件中添加如下配置)**
+  - **[搜集静态文件到指定目录](#搜集静态文件到指定目录)**
+  - **[同步数据库](#同步数据库)**
+  - **[启动OliverServer主进程](#启动OliverServer主进程)**
+  - **[重启nginx和supervisor](#重启nginx和supervisor)**
 
 开发语言: python
 
