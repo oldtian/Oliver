@@ -1,0 +1,63 @@
+{% extends "bstrap.html" %}
+
+{% block title %}集中化运维管理{% endblock %}
+
+{% block panel-title %}
+	集中化运维管理 
+{% endblock %}
+
+{% block content %}	
+	<form action="/ywgl/" method="POST" class="form-horizontal" role="form" id="opsmange">
+		{% csrf_token %}
+	   <div class="form-group">
+	      <div class="col-sm-4">
+		      <select multiple class="form-control" onchange="changeGroup()" name="hostgrouplist">
+		      	{% for group in hostgroup %}
+		         	<option>{{group.name}}</option>
+		        {% endfor %}
+		      </select>
+	      </div>
+	      <div class="col-sm-4">
+		      <select multiple class="form-control" name="memberlist" id="memberlist">
+		      </select>
+	      </div>
+	   </div>
+	   <div class="page-header"></div>
+	   <div class="form-group">
+			<div class="col-sm-4">
+				<select class="form-control" onchange="changeModule()" name="modulelist">
+					{% for module in modulelist %}
+						<option>[{{module.id}}]***{{module.module_name}}</option>
+					{% endfor %}
+		      	</select>
+			</div>
+			<div class="col-sm-4">
+				<div name="mod_extend" id="mod_extend" style="margin-top: 5px;">
+					返回信息行数：<input name="sys_param_1" id="sys_param_1" type="text" size="5" maxlength="3" value="50">
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<button type="submit" class="form-control btn btn-success">运行</button>
+			</div>
+			<div class="col-sm-1">
+				<button type="submit" class="form-control btn btn-info" onclick="PageRefresh()">刷新</button>
+			</div>
+			<div class="col-sm-1">
+				<a href="/ywgl/addmodule/"><button type="button" class="form-control btn btn-primary">添加模块</button></a>		
+			</div>
+	   </div>
+		<fieldset style="border-radius: 5px; ">
+		<legend>[<b>功能说明</b>]</legend>
+			<p><strong id="mod_desc">查看所选服务器的操作系统日志信息</strong></p>
+		</fieldset>
+	   <div class="form-group">
+	   		<div class="col-sm-12">
+		   			<div style="height: 400px; overflow-x: auto; background-color: black; white-space:nowrap" id="#res_output">
+		   			{% autoescape off %}
+						{{OPresult}}
+					{% endautoescape %}
+		   			</div>
+	   		</div>
+	   </div>
+	</form>	
+{% endblock %}	

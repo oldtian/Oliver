@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <div class="navbar-header" >  
+   	  <span><img src="/static/img/bow.png" style="width:40px; height:40px; margin: 6px 0 5px 15px;"></span>	  
+      <a class="navbar-brand" href="{% url 'index' %}" style="color: #d9edf7; float:right;">     	
+       		<h2 style="margin-top: 0px;">Oliver<small style="color: #f2dede;">&nbsp; 运维管理系统</small></h2>  
+       </a>          
+   </div>
+   <div>
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 55px;">
+       <li id="login"><a href="/accounts/login/" style="color: #d9edf7;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Login</a></li>
+	   <li class="dropdown" id="logout">
+	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	         {{request.user}} <span class="caret"></span>
+	      </a>
+	      <ul class="dropdown-menu">
+	         <li><a href="#">个人资料</a></li>
+	         <li class="divider"></li>
+	         <li><a href="/accounts/logout/">Logout</a></li>
+	      </ul>
+	   </li>
+      </ul>
+   </div>
+</nav>

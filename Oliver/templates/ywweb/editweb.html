@@ -1,0 +1,37 @@
+{% extends "bstrap.html" %}
+
+{% block title %}
+	编辑站点
+{% endblock %}
+
+{% block panel-title %}
+	编辑站点"{{site.name}}"
+{% endblock %}
+
+{% block content %}
+<form action="/web/{{site.id}}/" class="form-horizontal" role="form" id="addweb">
+	{% csrf_token %}
+   <div class="form-group">
+      <label for="site_name" class="col-sm-2 control-label">网站名称: </label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" name="site_name" id="site_name" value="{{site.name}}" required="required"
+            placeholder="请输入网站名">
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="weburl" class="col-sm-2 control-label">网址: </label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" name="weburl" id="weburl" value="{{site.slug}}" required="required"
+            placeholder="请输入网址">
+      </div>
+   </div>
+   <div class="page-header"></div>
+   <div class="form-group">
+	  <div class="col-sm-12, col-sm-offset-10">
+	     <button type="submit" class="btn  btn-success" onclick="webcancel()">取消</button>
+	     <button type="submit" class="btn  btn-success" onclick="websave()">保存</button>
+	  </div>
+   </div>
+</form>
+{% endblock %} 
+

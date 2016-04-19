@@ -1,0 +1,32 @@
+{% extends "bstrap.html" %}
+
+{% block title %}安全审计{% endblock %}
+
+{% block panel-title %}安全审计{% endblock %}
+
+{% block content %}
+	<div class="col-sm-4">
+      <select multiple style="height: 100px; width: 100%;" name="sjgroup" onchange="changejsgroup()">
+      	{% for group in hostgroup %}
+         	<option>{{group.name}}</option>
+        {% endfor %}
+      </select>
+	</div>
+	<div class="col-sm-4">
+      <select multiple style="height: 100px; width: 100%;" name="sjmember">
+
+      </select>	
+	</div>
+	<div class="col-sm-12">
+		<div class="page-header">
+			<button type="button" class="btn btn-success" onclick="get_hist()" id="jsmoniter">开始监控</button>
+			<a href="/audit/"><button type="button" class="btn btn-info">刷新</button></a>
+			<label for="jsdate" style="margin-left: 80px;">查询指定时间后日志:  </label>
+			<input type="datetime-local" id="sjdate" style="line-height: 27px;" value="2016-03-25T12:00">
+			<button type="button" class="btn btn-primary" onclick="sjquery()">查询</button>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div style="width:100%; height:500px; background-color:black; overflow-x: auto;" id="sjoutput"></div>
+	</div>
+{% endblock %}

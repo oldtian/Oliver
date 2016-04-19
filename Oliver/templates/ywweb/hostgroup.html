@@ -1,0 +1,35 @@
+{% extends "bstrap.html" %}
+
+{% block title %}主机组管理{% endblock %}
+
+{% block panel-title %}
+	主机组管理 
+{% endblock %}
+
+{% block content %}
+	<!-- 在顶部添加一个添加按钮 -->
+	<div class="panel panel-default">
+	   <div class="panel-body">
+	 	<a href="/add/hostgroup/">
+			<button type="button" class="btn btn-success btn-xs">添加<span class="badge">ADD</span></button>
+		</a>
+	   </div>
+	</div>
+	<!-- 添加主机组列表 -->
+	<table class="table table-striped table-hover">
+	   <thead>
+	      <tr>
+	         <th>组名</th>
+	         <th>成员</th>
+	      </tr>
+	   </thead>
+	   <tbody>
+	   {% for group in hostgroup %}
+			<tr>
+				<td><a href="{{group.get_absolute_url}}">{{group.name}}</a></td>
+				<td>{{group.member}}</td>
+			</tr>
+	   {% endfor %}
+	   </tbody>
+	</table>
+{% endblock %}
