@@ -44,7 +44,7 @@ web框架: django
 #### 安装部署
 下载Oliver到本地：`git clone https://github.com/oldtian/Oliver.git`
 
-##### 1、安装以下软件
+##### 安装以下软件
 ###### 1.1 安装nginx
 安装过程略
 
@@ -90,7 +90,7 @@ web框架: django
     cd pip-8.1.1
     python setup.py install
   
-##### 2、关闭selinux并开放iptables的80端口
+##### 关闭selinux并开放iptables的80端口
 
     setenforce 0
     sed -i '/^SELINUX=/{s/enforcing/disabled/}' /etc/sysconfig/selinux
@@ -98,7 +98,7 @@ web框架: django
     iptables -I INPUT 4  -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
     /etc/init.d/iptables save
   
-##### 3、pip安装如下包
+##### pip安装如下包
 
     pip install supervisor
     pip install uwsgi
@@ -108,7 +108,7 @@ web框架: django
     pip install MySQL-python
     pip install rpyc
   
-##### 4、创建uwsgi.ini
+##### 创建uwsgi.ini
 建议放置在项目所在目录下
 
     [uwsgi]
@@ -121,11 +121,11 @@ web框架: django
     chmod-socket = 664			#socket文件的属性
     chown-socket = nginx:nginx		#socket文件的属主和属组
   
-##### 5、创建supervisor配置文件
+##### 创建supervisor配置文件
 
     echo_supervisord_conf > /etc/supervisord.conf
   
-##### 6、编辑supervisor配置文件
+##### 编辑supervisor配置文件
 在/etc/supervisord.conf末尾追加
 
     [program:oliver]   #oliver是supervisor管理的进程名
@@ -136,7 +136,7 @@ web框架: django
     autostart=true
     autorestart=true
   
-7、启动supervisor
+##### 启动supervisor
 
     supervisord -c /etc/supervisord.conf
 查看/tmp/oliver.sock文件是否存在，如果不存在可先将/tmp目录下文件删除，然后再一次执行上面的命令
@@ -154,7 +154,7 @@ supervisor管理进程命令:
 
     supervisorctl -c /etc/supervisord.conf restart oliver
 
-##### 8、修改nginx配置
+##### 修改nginx配置
 nginx的配置文件中添加虚拟主机配置：
 
     server {
@@ -176,11 +176,11 @@ nginx的配置文件中添加虚拟主机配置：
   
 django仅在开发模式可加载setting.py配置中指定目录下的静态文件，在生产环境要通过nginx配置来加载静态文件，创建static和media目录。
 
-9、添加网站监控脚本到定时任务
+##### 添加网站监控脚本到定时任务
 
      */5 * * * * /usr/local/bin/python /opt/www/Oliver/webapi/sniffer.py >/dev/null 2>&1
   
-10、在需要做安全审计的主机的/etc/profile文件中添加如下配置
+##### 在需要做安全审计的主机的/etc/profile文件中添加如下配置
 
     HISTSIZE=1200
     export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE
@@ -193,22 +193,22 @@ django仅在开发模式可加载setting.py配置中指定目录下的静态文�
     typeset -r PROMPT_COMMAND
     typeset -r HISTTIMEFORMAT
   
-11、搜集静态文件到指定目录
+##### 搜集静态文件到指定目录
 在setting.py中配置STATIC_ROOT来指定搜集静态文件存放目录：
 
     python manage.py collectstatic
 每次修改静态文件内容，也需要执行一次以上命令，否则修改后的内容nginx加载不到
 
-12、同步数据库
+##### 同步数据库
 
     python manage.py makemigrations
     python manage.py migrate
   
-13、启动OliverServer主进程
+##### 启动OliverServer主进程
 
     python OliverServer.py &
   
-13、重启nginx和supervisor
+##### 重启nginx和supervisor
 
     service nginx restart
     supervisorctl -c /etc/supervisord.conf restart oliver
