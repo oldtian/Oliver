@@ -4,6 +4,8 @@ Oliver运维管理系统
 
 web框架: django
 
+版本：V1.2
+
 作者：老田
 
 
