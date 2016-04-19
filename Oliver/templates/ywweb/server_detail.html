@@ -1,0 +1,34 @@
+{% extends "bstrap.html" %}
+{% block title %}
+	{{serobj.hostname}}
+{% endblock %}
+
+{% block content %}
+	<h3>{{serobj.hostname}}详细信息:</h1>
+	<div class="page-header"></div>
+	{% for ip in serobj.ipaddr_set.all %}
+		<h4>{{ip.ip_type}}: {{ip.address}}</h4>
+	{% endfor %}
+	<h4>操作系统: {{serobj.os_platform}}</h4>
+	<h4>归属平台: {{serobj.business.name}}</h4>
+	<h4>项目负责人: {{serobj.leader.name}}</h4>
+	<h4>标签: {{serobj.tag}}</h4>
+	<h4>机型: {{serobj.manufactory}}  {{serobj.model}}</h4>
+	<h4>CPU: {{serobj.cpu_model}} \ {{serobj.cpu_physical_count}} \ {{serobj.cpu_count}}</h4>
+	<h4>内存: {{serobj.mem_capacity}}G</h4>
+	{% for disk in serobj.disk_set.all %}
+		{% if disk.dgroup == 1 %}
+			<h4>磁盘组一: {{disk.count}}*{{disk.capacity}}G {{disk.pd_type}} RAID:{{disk.raid}}</h4>
+		{% endif %}
+		{% if disk.dgroup == 2 %}
+			<h4>磁盘组二: {{disk.count}}*{{disk.capacity}}G {{disk.pd_type}} RAID:{{disk.raid}}</h4>
+		{% endif %}
+	{% endfor %}
+	<h4>IDC机房: {{serobj.idc.name}}</h4>
+	<h4>机柜编号: {{serobj.cabinet_num}}</h4>
+	<h4>网络带宽: {{serobj.band}}</h4>
+	<h4>设备类型: {{serobj.device_type}}</h4>
+	<h4>序列号: {{serobj.sn}}</h4>
+	<h4>维保截止时间: {{serobj.service_time}}</h4>
+	<h4>在线状态: {{serobj.status}}</h4>
+{% endblock %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}欢迎使用{% endblock %} - 运维管理系统</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body {
+        	padding-top: 60px;
+    	}
+    	#left-menu .list-group-item {
+    		font-weight: bold;
+    	}
+    	fieldset{
+    		padding:.35em .625em .75em;
+    		margin:0 2px;
+    		border:1px solid silver
+    	}
+	legend {
+		padding:.5em;
+		border:0;
+		width:auto
+		}
+	#top-icon {
+		text-decoration:none;
+		}
+    </style>
+  </head>
+  <body>
+  	{% include "nav.html" %}
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-md-2 column">
+				<div class="panel panel-primary">
+				   <div class="panel-heading">
+				      <h3 class="panel-title">		      
+				      </h3>
+				   </div>
+				   <div class="panel-body" id="left-menu">
+						{% include "left-menu.html" %}
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-8 column">
+				<div class="panel panel-default">
+				   <div class="panel-body" style="padding-bottom: 0px;">
+				      {% include "top-icon.html" %}
+				   </div>
+				</div>
+				<div class="panel panel-primary">
+				   <div class="panel-heading">
+				      <h3 class="panel-title">
+				      	{% block panel-title %}
+							Oliver运维管理系统 
+						{% endblock %}				      
+				      </h3>
+				   </div>
+				   <div class="panel-body">
+				      	{% block content %}
+					
+						{% endblock %}
+				   </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+		  	
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="/static/js/comm.js"></script>
+    <script src="/static/js/chat.js"></script>
+  </body>
+</html>
+
