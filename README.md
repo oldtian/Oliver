@@ -188,7 +188,7 @@ django仅在开发模式可加载setting.py配置中指定目录下的静态文�
     export HISTFILE=$HOME/.bash_history
     export HISTFILESIZE=1200
     export HISTTIMEFORMAT="`whoami` %F %T "
-    export PROMPT_COMMAND="history -a; history -c; history -r;"'/opt/www/OMAudit/OMAudit_agent.py $(history 1)'
+    export PROMPT_COMMAND="history -a; history -c; history -r;"'/opt/www/OliverAudit/OliverAudit_agent.py $(history 1)'
     shopt -s histappend
     typeset -r PROMPT_COMMAND
     typeset -r HISTTIMEFORMAT
